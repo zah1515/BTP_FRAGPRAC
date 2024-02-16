@@ -1,0 +1,5 @@
+studentId,collegeId,studentName,studentAge,phone,studentAddress
+S001,C001,John Doe,22,1234567890,123 Main St, City A
+S002,C002,Jane Smith,20,9876543210,456 Elm Ave, Town B
+S003,C001,Michael Johnson,25,1112223333,789 Oak St, City C
+S004,C003,Emily Brown,19,4445556666,321 Pine Rd, Town D

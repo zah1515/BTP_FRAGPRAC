@@ -1,0 +1,177 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "fragpraclist",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.12.3",
+      "toolsId": "2b952b18-500d-45bf-a75f-c3ba38699761"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/fracservice/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "fragpraclist.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "style/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "collegeList",
+          "target": "collegeList"
+        },
+        {
+          "pattern": "college({key}):?query:",
+          "name": "collegeObjectPage",
+          "target": "collegeObjectPage"
+        },
+        {
+          "pattern": "college({key})/colltostud({key2}):?query:",
+          "name": "studentObjectPage",
+          "target": "studentObjectPage"
+        }
+      ],
+      "targets": {
+        "collegeList": {
+          "type": "Component",
+          "id": "collegeList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/college",
+              "variantManagement": "Page",
+              "navigation": {
+                "college": {
+                  "detail": {
+                    "route": "collegeObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "collegeObjectPage": {
+          "type": "Component",
+          "id": "collegeObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/college",
+              "navigation": {
+                "colltostud": {
+                  "detail": {
+                    "route": "studentObjectPage"
+                  }
+                }
+              },
+              "content": {
+                "body": {
+                  "sections": {
+                    "StudFrag": {
+                      "template": "fragpraclist.ext.fragment.StudFrag",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "GeneratedFacet1"
+                      },
+                      "title": "student Details",
+                      "type": "XMLFragment"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "studentObjectPage": {
+          "type": "Component",
+          "id": "studentObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/college/colltostud"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

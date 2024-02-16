@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros">
+	<VBox>
+		<Button core:require="{ handler: 'fragpraclist/ext/fragment/StudFrag'}" text="StudFrag" press="handler.onPress" />
+
+		<Table
+		headerText="COllege Details"
+		items="{
+			path:'/college'
+		}" 
+		>
+		<columns>
+			<Column mergeDuplicates="true">
+				<header>
+					<Text text="collegeId" />
+				</header>
+			</Column>
+			<Column mergeDuplicates="true">
+				<header>
+					<Text text="collegeName" />
+				</header>
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="End" >
+				<header>
+					<Text text="collegeType" />
+				</header>
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				hAlign="Center" >
+				<header>
+					<Text text="collegeAddress" />
+				</header>
+			</Column>
+		</columns>
+
+		<ColumnListItem vAlign="Middle">
+			<Text text="{collegeId}" />
+			<ObjectIdentifier title="{Name}" text="{collegeName}" />
+			<Text text="{collegeType}" />
+			<Text text="{collegeAddress}" />
+			
+		</ColumnListItem>
+
+		</Table>
+	</VBox>
+</core:FragmentDefinition>
